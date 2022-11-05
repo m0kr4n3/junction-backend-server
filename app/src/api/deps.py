@@ -50,6 +50,19 @@ def get_current_active_user(
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
+def get_current_inventor(
+    current_user: User = Depends(get_current_user),
+) -> User:
+    if not crud_user.user.is_inventor(current_user):
+        raise HTTPException(status_code=400, detail="User is not Inventor")
+    return current_user
+
+def get_current_expert(
+    current_user: User = Depends(get_current_user),
+) -> User:
+    if not crud_user.user.is_expert(current_user):
+        raise HTTPException(status_code=400, detail="User is not Expert.")
+    return current_user
 
 def get_current_active_superuser(
     current_user: User = Depends(get_current_user),

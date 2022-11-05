@@ -4,8 +4,7 @@ from pydantic import BaseModel, EmailStr
 
 
 class InventorBase(BaseModel):
-    email: Optional[EmailStr] = None
-    full_name: Optional[str] = None
+    status: Optional[str] = None
 
 
 

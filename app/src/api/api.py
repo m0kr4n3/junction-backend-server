@@ -1,4 +1,4 @@
-from src.api.endpoints import login, users, items, inventors
+from src.api.endpoints import login, users, items, inventors, experts, innovation_supports, foundation_admins, projects, fields, expert_field, project_field
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from src.core.config import settings
@@ -22,3 +22,10 @@ api_router.include_router(login.router, tags=["login"])
 api_router.include_router(users.router, prefix="/users", tags=["users"])
 api_router.include_router(items.router, prefix="/items", tags=["items"])
 api_router.include_router(inventors.router, prefix="/inventors", tags=["inventors"])
+api_router.include_router(experts.router, prefix="/experts", tags=["experts"])
+api_router.include_router(innovation_supports.router, prefix="/innovation_supports", tags=["innovation_supports"])
+api_router.include_router(foundation_admins.router, prefix="/foundation_admins", tags=["foundation_admins"])
+api_router.include_router(projects.router, prefix="/projects", tags=["projects"])
+api_router.include_router(fields.router, prefix="/fields", tags=["fields"])
+api_router.include_router(expert_field.router, prefix="/expert_field", tags=["expert_field"])
+api_router.include_router(project_field.router, prefix="/project_field", tags=["project_field"])

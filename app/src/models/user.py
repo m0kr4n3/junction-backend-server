@@ -22,7 +22,8 @@ class User(Base):
     # is_superuser = Column(Boolean(), default=False)
     user_type = Column(Enum(UserType),nullable=False, default=1)
     items = relationship("Item", back_populates="owner")
-
+    projects = relationship("Project", back_populates="owner")
+    # fields = relationship("Field", back_populates="owner")
 
 
 
