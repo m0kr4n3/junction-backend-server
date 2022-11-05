@@ -6,7 +6,7 @@ from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
 from src import models, schemas
-from src.crud import crud_user 
+from src.crud import crud_user, crud_inventor
 from src.api import deps
 from src.core.config import settings
 

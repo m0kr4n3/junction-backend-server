@@ -2,25 +2,25 @@ from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
-class UserBase(BaseModel):
+
+class InventorBase(BaseModel):
     email: Optional[EmailStr] = None
-    is_active: Optional[bool] = True
-    user_type: Optional[int] = 1
     full_name: Optional[str] = None
 
 
+
 # Properties to receive via API on creation
-class UserCreate(UserBase):
-    email: EmailStr
-    password: str
+class InventorCreate(InventorBase):
+    id: int
+    status: str
 
 
 # Properties to receive via API on update
-class UserUpdate(UserBase):
-    password: Optional[str] = None
+class InventorUpdate(InventorBase):
+    status: Optional[str] = None
 
 
-class UserInDBBase(UserBase):
+class InventorInDBBase(InventorBase):
     id: Optional[int] = None
 
     class Config:
@@ -28,10 +28,10 @@ class UserInDBBase(UserBase):
 
 
 # Additional properties to return via API
-class User(UserInDBBase):
+class Inventor(InventorInDBBase):
     pass
 
 
 # Additional properties stored in DB
-class UserInDB(UserInDBBase):
-    hashed_password: str
+class InventorInDB(InventorInDBBase):
+    pass
