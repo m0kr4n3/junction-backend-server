@@ -19,6 +19,11 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
         db.refresh(db_obj)
         return db_obj
 
+    def get_multi(
+        self, db: Session, *, owner_id: int,skip: int = 0, limit: int = 100
+    ) -> List[Project]:
+        return db.query(self.model).filter(Project.owner_id == owner_id).offset(skip).limit(limit).all()
+
     def get_multi_by_owner(
         self, db: Session, *, owner_id: int, skip: int = 0, limit: int = 100
     ) -> List[Project]:

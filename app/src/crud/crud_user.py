@@ -6,7 +6,7 @@ from src.core.security import get_password_hash, verify_password
 from src.crud.base import CRUDBase
 from src.models.user import User
 from src.schemas.user import UserCreate, UserUpdate
-
+from .crud_expert_project import expert_project
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
     def get_by_email(self, db: Session, *, email: str) -> Optional[User]:
@@ -31,7 +31,7 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             update_data = obj_in
         else:
             update_data = obj_in.dict(exclude_unset=True)
-        if update_data["password"]:
+        if update_data.get("password", None):
             hashed_password = get_password_hash(update_data["password"])
             del update_data["password"]
             update_data["hashed_password"] = hashed_password
@@ -45,11 +45,18 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             return None
         return user
 
+    def is_expert_affected(self, db:Session, user: User, project_id: int) -> bool:
+        expert_project_obj = expert_project.get(db=db,expert_id=user.id, project_id=project_id)
+        if expert_project_obj:
+            return True
+        else:
+            return False
+
     def is_active(self, user: User) -> bool:
         return user.is_active
     
     def is_inventor(self, user: User) -> bool:
-        return user.user_type == 1
+        return self.is_superuser(user) or user.user_type == 1
 
     def is_expert(self, user: User) -> bool:
         return user.user_type == 3

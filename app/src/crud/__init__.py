@@ -8,6 +8,9 @@ from .crud_project import project
 from .crud_field import field
 from .crud_expert_field import expert_field
 from .crud_project_field import project_field
+from .crud_feedback import feedback
+from .crud_expert_project import expert_project
+from .crud_evaluation import evaluation
 # For a new basic set of CRUD operations you could just do
 
 # from .base import CRUDBase

@@ -55,6 +55,7 @@ def update_user_me(
     password: str = Body(None),
     full_name: str = Body(None),
     email: EmailStr = Body(None),
+    user_type: int = Body(None),
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
@@ -68,6 +69,8 @@ def update_user_me(
         user_in.full_name = full_name
     if email is not None:
         user_in.email = email
+    if user_type is not None:
+        user_in.user_type = user_type
     user = crud_user.user.update(db, db_obj=current_user, obj_in=user_in)
     return user
 

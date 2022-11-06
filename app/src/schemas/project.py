@@ -7,16 +7,22 @@ from pydantic import BaseModel
 class ProjectBase(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
-
+    document_link: Optional[str] = None
 
 # Properties to receive on item creation
 class ProjectCreate(ProjectBase):
     title: str
+    description: str
+    keyword1: str
+    keyword2: str
+    keyword3: str
+    team_size: int
+    # document_size: str
 
 
 # Properties to receive on item update
 class ProjectUpdate(ProjectBase):
-    pass
+    document_link: str
 
 
 # Properties shared by models stored in DB
@@ -24,7 +30,12 @@ class ProjectInDBBase(ProjectBase):
     id: int
     title: str
     owner_id: int
-
+    description: str
+    keyword1: str
+    keyword2: str
+    keyword3: str
+    team_size: int
+    document_size: Optional[str] = None
     class Config:
         orm_mode = True
 

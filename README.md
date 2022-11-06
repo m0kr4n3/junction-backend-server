@@ -16,35 +16,32 @@ Built on Python: 3.8.
 ## File Structure
 ```
 .
-├── app
+├── app/
 │   ├── Dockerfile
 │   ├── main.py
 │   ├── requirements.txt
 │   ├── .env
-│   └── src
-│       ├── api
-│           ├── endpoints
-│               ├── items.py
-│               ├── user.py
-│               └── login.py
+│   └── src/
+│       ├── api/
+│           ├── endpoints/
 │           ├── api.py
 │           └── deps.py
-│       ├── core
+│       ├── core/
 │           ├── config.py
 │           └── security.py
-│       ├── crud
+│       ├── crud/
 │           ├── base.py
 │           ├── crud_user.py
 │           └── crud_item.py
-│       ├── db
+│       ├── db/
 │           ├── base_class.py
 │           ├── base.py
 │           ├── init_db.py
 │           └── session.py
-│       ├── models
+│       ├── models/
 │           ├── item.py
 │           └── user.py
-│       └── schemas
+│       └── schemas/
 │           ├── item.py
 │           ├── msg.py
 │           ├── token.py
