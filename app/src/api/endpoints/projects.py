@@ -51,7 +51,7 @@ def upload_project_document(
     *,
     db: Session = Depends(deps.get_db),
     id: int,
-    file: UploadFile= File(),
+    file: UploadFile= File(default=""),
     current_user: models.User = Depends(deps.get_current_inventor),
 ) -> Any:
     """
