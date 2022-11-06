@@ -1,7 +1,7 @@
 from google.cloud import storage
 import datetime, os
 from fastapi import UploadFile
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f"{os.getcwd()}/creds.json"
+
 storage_client = storage.Client()
 
 
